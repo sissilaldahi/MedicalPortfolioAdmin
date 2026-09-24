@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MedicalPortfolio_Admin/medicalportfolio_admin.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
