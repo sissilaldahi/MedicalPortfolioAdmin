@@ -81,7 +81,6 @@ function AdminHome() {
                     </div>
                 </div>
 
-                {/* Live Preview */}
                 <div className="col-md-6">
                     <div className="card shadow-sm p-4 bg-light">
                         <h5 className="text-muted mb-3">Live Preview</h5>

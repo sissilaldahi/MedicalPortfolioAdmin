@@ -21,18 +21,18 @@ elseif ($method === 'POST') {
     }
 
     $id = $input['id'] ?? null;
-    $name = $input['title'] ?? $input['name'] ?? ''; // Handles both React form keys
+    $name = $input['title'] ?? $input['name'] ?? ''; 
     $description = $input['description'] ?? '';
-    $icon = $input['icon'] ?? 'bi-heart-pulse'; // Default fallback icon from your DB structure
+    $icon = $input['icon'] ?? 'bi-heart-pulse'; 
 
     if (!empty($name)) {
         if (!empty($id)) {
-            // Update existing service
+           
             $stmt = $conn->prepare("UPDATE services SET name = ?, description = ?, icon = ? WHERE id = ?");
             $stmt->bind_param("sssi", $name, $description, $icon, $id);
             $actionMsg = "Service updated successfully!";
         } else {
-            // Insert new service matching columns: name, description, icon
+            
             $stmt = $conn->prepare("INSERT INTO services (name, description, icon) VALUES (?, ?, ?)");
             $stmt->bind_param("sss", $name, $description, $icon);
             $actionMsg = "Service added successfully!";

@@ -20,7 +20,6 @@ export default function AdminSidebar() {
                 transition: 'width 0.3s ease'
             }}
         >
-            {/* Header with Brand & 3-Dot Toggle Menu */}
             <div className="d-flex align-items-center justify-content-between mb-2 px-1">
                 {!isCollapsed && (
                     <div>
@@ -31,7 +30,6 @@ export default function AdminSidebar() {
                     </div>
                 )}
 
-                {/* 3-Dots Dropdown Trigger */}
                 <div className="position-relative ms-auto">
                     <button
                         className="btn btn-sm btn-dark text-white-50 rounded-circle border-0 p-2 hover-light"
@@ -57,7 +55,6 @@ export default function AdminSidebar() {
 
             <hr className="text-secondary mt-1 mb-3 opacity-25" />
 
-            {/* Navigation Links */}
             <ul className="nav nav-pills flex-column mb-auto gap-1">
 
                 {!isCollapsed && <small className="text-muted text-uppercase fw-bold ps-2 mb-1" style={{ fontSize: '0.70rem', letterSpacing: '0.5px' }}>Main</small>}
@@ -111,7 +108,6 @@ export default function AdminSidebar() {
 
             <hr className="text-secondary opacity-25" />
 
-            {/* Logout Button */}
             <div>
                 <button className="btn btn-outline-danger w-100 text-danger border-danger rounded-3 py-2 d-flex align-items-center justify-content-center bg-transparent hover-danger-btn">
                     <i className="fa-solid fa-right-from-bracket me-2"></i> {!isCollapsed && <span>Logout</span>}

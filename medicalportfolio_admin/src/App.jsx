@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-// Import Layout & Pages
 import AdminDashboard from './admin/pages/AdminDashboard';
 import AdminServices from './admin/pages/AdminServices';
 import AdminDepartments from './admin/pages/AdminDepartments';
@@ -12,11 +11,10 @@ function App() {
     return (
         <Router>
             <Routes>
-                {/* Redirect root or unknown pages to login */}
+              
                 <Route path="/" element={<Navigate to="/login" replace />} />
                 <Route path="/login" element={<Login />} />
 
-                {/* Admin Layout Wrapper with Nested Routes */}
                 <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<AdminDashboard />} />
                     <Route path="dashboard" element={<AdminDashboard />} />

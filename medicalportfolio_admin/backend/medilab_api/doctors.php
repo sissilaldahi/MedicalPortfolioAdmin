@@ -10,7 +10,7 @@ if ($method === 'GET') {
     $department = $_GET['department'] ?? null;
 
     if (!empty($department)) {
-        // Match against 'specialty' column
+  
         $stmt = $conn->prepare("SELECT * FROM doctors WHERE specialty = ?");
         $stmt->bind_param("s", $department);
         $stmt->execute();
@@ -22,7 +22,6 @@ if ($method === 'GET') {
 
     $doctors = [];
     while ($row = $result->fetch_assoc()) {
-        // Map specialty to 'department' for the frontend compatibility
         $row['department'] = $row['specialty'];
         $doctors[] = $row;
     }
@@ -42,11 +41,11 @@ elseif ($method === 'POST') {
 
     if (!empty($name) && !empty($department)) {
         if (!empty($id)) {
-            // Update using specialty column
+
             $stmt = $conn->prepare("UPDATE doctors SET name = ?, specialty = ?, phone = ?, schedule = ? WHERE id = ?");
             $stmt->bind_param("ssssi", $name, $department, $phone, $schedule, $id);
         } else {
-            // Insert using specialty column
+
             $stmt = $conn->prepare("INSERT INTO doctors (name, specialty, phone, schedule) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $name, $department, $phone, $schedule);
         }

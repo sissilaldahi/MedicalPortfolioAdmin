@@ -8,7 +8,7 @@ function AdminLayout() {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     useEffect(() => {
-        // Simple security check: redirect to login if not authenticated
+
         if (localStorage.getItem('isAdminLoggedIn') !== 'true') {
             navigate('/login');
             return;
@@ -40,7 +40,6 @@ function AdminLayout() {
 
     return (
         <div className="d-flex" style={{ minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
-            {/* Sidebar */}
             <div
                 className="d-flex flex-column p-3 text-white shadow transition-all"
                 style={{
@@ -50,7 +49,6 @@ function AdminLayout() {
                     transition: 'width 0.3s ease'
                 }}
             >
-                {/* Brand Header & Toggle Button */}
                 <div className="d-flex align-items-center justify-content-between px-2 mb-3 mt-1">
                     {!isCollapsed ? (
                         <div className="d-flex align-items-center gap-2">
@@ -90,8 +88,6 @@ function AdminLayout() {
                 )}
 
                 <hr className="border-secondary opacity-25 mb-3" />
-
-                {/* Navigation Links */}
                 <ul className="nav nav-pills flex-column mb-auto gap-1">
                     {!isCollapsed && <div className="text-uppercase text-secondary fw-bold px-2 mb-1" style={{ fontSize: '0.65rem' }}>Main</div>}
                     <li className="nav-item">
@@ -145,8 +141,6 @@ function AdminLayout() {
                 </ul>
 
                 <hr className="border-secondary opacity-25 my-3" />
-
-                {/* Bottom Profile & Working Logout Button */}
                 <div className="p-2 rounded-3 bg-dark bg-opacity-50">
                     <div className="d-flex align-items-center justify-content-between mb-2">
                         <div className="d-flex align-items-center gap-2 overflow-hidden">
@@ -171,7 +165,6 @@ function AdminLayout() {
                 </div>
             </div>
 
-            {/* Main Content Area */}
             <div className="flex-grow-1 overflow-auto">
                 <nav className="navbar navbar-expand navbar-light bg-white px-4 shadow-sm mb-0">
                     <span className="navbar-brand mb-0 h1 text-secondary fw-semibold fs-5">Admin Panel</span>

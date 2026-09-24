@@ -63,7 +63,6 @@ function AdminDoctors() {
     };
 
     const handleDelete = (doc) => {
-        // Logical check: Prevent deletion if the doctor currently belongs to a department
         if (doc.department && doc.department.trim() !== '') {
             alert(`Cannot delete Dr. ${doc.name} because they are currently assigned to the "${doc.department}" department.`);
             return;
@@ -99,7 +98,6 @@ function AdminDoctors() {
 
             {message && <div className="alert alert-primary py-2">{message}</div>}
 
-            {/* Full-Width Table Layout */}
             <div className="card border-0 shadow-sm rounded-3 p-4">
                 <h5 className="fw-semibold mb-3 text-secondary">Doctors List</h5>
                 <div className="table-responsive">
@@ -118,7 +116,6 @@ function AdminDoctors() {
                             {doctors.length > 0 ? (
                                 doctors.map((doc, index) => (
                                     <tr key={doc.id}>
-                                        {/* Sequential row counting instead of raw database ID */}
                                         <td className="fw-semibold text-muted">{index + 1}</td>
                                         <td className="fw-bold text-dark">{doc.name}</td>
                                         <td>
@@ -158,7 +155,6 @@ function AdminDoctors() {
                 </div>
             </div>
 
-            {/* Add / Edit Doctor Modal Popup */}
             {showModal && (
                 <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="modal-dialog">

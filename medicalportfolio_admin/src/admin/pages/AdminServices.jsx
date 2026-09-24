@@ -87,7 +87,6 @@ function AdminServices() {
 
             {message && <div className="alert alert-primary py-2">{message}</div>}
 
-            {/* Full-Width Table Layout */}
             <div className="card border-0 shadow-sm rounded-3 p-4">
                 <h5 className="fw-semibold mb-3 text-secondary">Services List</h5>
                 <div className="table-responsive">
@@ -104,7 +103,6 @@ function AdminServices() {
                             {services.length > 0 ? (
                                 services.map((srv, index) => (
                                     <tr key={srv.id}>
-                                        {/* Sequential row count instead of actual DB primary key */}
                                         <td className="fw-semibold text-muted">{index + 1}</td>
                                         <td className="fw-bold text-dark">{srv.name}</td>
                                         <td className="text-secondary text-truncate" style={{ maxWidth: '250px' }}>
@@ -138,7 +136,6 @@ function AdminServices() {
                 </div>
             </div>
 
-            {/* Add / Edit Service Modal Popup */}
             {showModal && (
                 <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="modal-dialog">

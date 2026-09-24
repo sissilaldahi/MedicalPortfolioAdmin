@@ -1,5 +1,5 @@
 <?php
-// Turn off HTML error reporting so it doesn't break JSON output
+
 ini_set('display_errors', 0);
 error_reporting(E_ALL);
 
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "medilab_db"; // Updated to match your actual database name
+$dbname = "medilab_db"; 
 
 $conn = new mysqli($host, $username, $password, $dbname);
 
@@ -29,25 +29,25 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
     case 'GET':
-        // Pagination parameters (defaults to page 1, 5 items per page)
+        
         $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
         $limit = isset($_GET['limit']) ? intval($_GET['limit']) : 5;
         $offset = ($page - 1) * $limit;
 
-        // Get total count of records for frontend page calculation
+        
         $count_sql = "SELECT COUNT(*) as total FROM appointments";
         $count_result = $conn->query($count_sql);
         $total_rows = ($count_result) ? intval($count_result->fetch_assoc()['total']) : 0;
         $total_pages = ceil($total_rows / $limit);
 
-        // Fetch paginated appointments matching your table schema columns
+        
         $sql = "SELECT id, patient_name, email, phone, appointment_date, department, doctor, message, status FROM appointments ORDER BY appointment_date DESC LIMIT $limit OFFSET $offset";
         $result = $conn->query($sql);
         
         $appointments = [];
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                // Map 'doctor' to 'doctor_name' for seamless React compatibility
+               
                 $row['doctor_name'] = $row['doctor'];
                 $appointments[] = $row;
             }
@@ -66,7 +66,7 @@ switch ($method) {
     case 'POST':
         $data = json_decode(file_get_contents("php://input"), true);
         
-        // Check if it's a status update request sent via POST
+       
         if (isset($data['action']) && $data['action'] === 'update_status') {
             $id = intval($data['id'] ?? 0);
             $status = $conn->real_escape_string($data['status'] ?? 'Pending');
@@ -80,10 +80,10 @@ switch ($method) {
             break;
         }
 
-        // Otherwise, it's creating a new appointment
+        
         $patient_name = $conn->real_escape_string($data['patient_name'] ?? '');
-        $email = $conn->real_escape_string($data['email'] ?? 'saso.aldahi@gmail.com'); // fallback or form field
-        $phone = $conn->real_escape_string($data['phone'] ?? '00000000'); // fallback or form field
+        $email = $conn->real_escape_string($data['email'] ?? 'saso.aldahi@gmail.com'); 
+        $phone = $conn->real_escape_string($data['phone'] ?? '00000000'); 
         $department = $conn->real_escape_string($data['department'] ?? '');
         $doctor = $conn->real_escape_string($data['doctor_name'] ?? $data['doctor'] ?? '');
         $appointment_date = $conn->real_escape_string($data['appointment_date'] ?? '');
@@ -95,7 +95,6 @@ switch ($method) {
             exit();
         }
 
-        // Prevent booking the same doctor at the same exact date and time
         $conflict_check = "SELECT id FROM appointments WHERE doctor = '$doctor' AND appointment_date = '$appointment_date'";
         $conflict_result = $conn->query($conflict_check);
         if ($conflict_result && $conflict_result->num_rows > 0) {

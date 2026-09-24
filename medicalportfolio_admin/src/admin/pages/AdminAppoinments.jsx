@@ -11,9 +11,9 @@ const AdminAppoinments = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [totalRecords, setTotalRecords] = useState(0);
-    const itemsPerPage = 5; // Change this to how many items you want per page
+    const itemsPerPage = 5; 
 
-    // Form State for Adding Appointment
+    
     const [showAddModal, setShowAddModal] = useState(false);
     const [patientName, setPatientName] = useState('');
     const [email, setEmail] = useState('');
@@ -30,7 +30,7 @@ const AdminAppoinments = () => {
 
     const API_URL = 'http://localhost/medilab_api/appointments.php';
 
-    // Fetch Appointments with Page Support
+    
     const fetchAppointments = async (page = 1) => {
         setLoading(true);
         try {
@@ -56,7 +56,7 @@ const AdminAppoinments = () => {
         fetchAppointments(currentPage);
     }, [currentPage]);
 
-    // Handle Add Appointment Submit
+  
     const handleAddAppointment = async (e) => {
         e.preventDefault();
         setError('');
@@ -85,7 +85,6 @@ const AdminAppoinments = () => {
                 setDoctorName('');
                 setAppointmentDate('');
                 setStatus('Pending');
-                // Refresh to page 1 to see the newest booking
                 setCurrentPage(1);
                 fetchAppointments(1);
             } else {
@@ -97,7 +96,6 @@ const AdminAppoinments = () => {
         }
     };
 
-    // Handle Status Change
     const handleStatusChange = async (id, newStatus) => {
         try {
             const response = await fetch(API_URL, {
@@ -117,7 +115,6 @@ const AdminAppoinments = () => {
         }
     };
 
-    // KPI Counts based on the current loaded table view
     const pendingCount = appointments.filter(a => a.status === 'Pending').length;
     const confirmedCount = appointments.filter(a => a.status === 'Confirmed').length;
     const cancelledCount = appointments.filter(a => a.status === 'Cancelled').length;
@@ -134,7 +131,6 @@ const AdminAppoinments = () => {
             {error && <div className="alert alert-danger">{error}</div>}
             {successMsg && <div className="alert alert-success">{successMsg}</div>}
 
-            {/* Statistic Cards (Soft Blue Shades) */}
             <div className="row g-3 mb-4">
                 <div className="col-md-3 col-sm-6">
                     <div className="card shadow-sm border-0 border-start border-primary border-4 bg-white">
@@ -170,7 +166,6 @@ const AdminAppoinments = () => {
                 </div>
             </div>
 
-            {/* Appointments Table Card */}
             <div className="card shadow-sm">
                 <div className="card-body">
                     {loading ? (
@@ -223,7 +218,6 @@ const AdminAppoinments = () => {
                                 </table>
                             </div>
 
-                            {/* Pagination Controls */}
                             <div className="d-flex justify-content-between align-items-center mt-3">
                                 <span className="text-muted">
                                     Page {currentPage} of {totalPages}
@@ -250,7 +244,7 @@ const AdminAppoinments = () => {
                 </div>
             </div>
 
-            {/* Add Appointment Modal */}
+
             {showAddModal && (
                 <div className="modal show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="modal-dialog">

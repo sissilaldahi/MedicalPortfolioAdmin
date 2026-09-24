@@ -28,7 +28,6 @@ if(!empty($data->email) && !empty($data->password)) {
     $input_user = trim($data->email);
     $input_pass = trim($data->password);
 
-    // Look for the user by email/username column
     $query = "SELECT id, email, password FROM admins WHERE email = :email LIMIT 1";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(":email", $input_user);
@@ -38,7 +37,6 @@ if(!empty($data->email) && !empty($data->password)) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         $db_password = $row['password'];
 
-        // Check if it matches the hashed password OR standard text '12345678'
         if(password_verify($input_pass, $db_password) || $input_pass === $db_password) {
             echo json_encode(array(
                 "success" => true, 

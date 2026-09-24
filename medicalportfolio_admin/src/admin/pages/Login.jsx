@@ -15,7 +15,7 @@ export default function Login() {
             const response = await fetch('http://localhost/medilab_api/login.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }) // 'email' variable holds your username 'sissil'
+                body: JSON.stringify({ email, password }) 
             });
 
             const data = await response.json();

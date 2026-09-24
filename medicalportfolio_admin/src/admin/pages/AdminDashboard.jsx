@@ -45,7 +45,7 @@ function AdminDashboard() {
         fetch('http://localhost/medilab_api/appointments.php')
             .then((res) => res.json())
             .then((data) => {
-                // Handle both direct arrays and wrapped response objects (e.g., data.appointments or data.data)
+               
                 const aptList = Array.isArray(data)
                     ? data
                     : (data.appointments || data.data || []);
@@ -101,7 +101,6 @@ function AdminDashboard() {
         <div className="container-fluid px-4 py-4">
             <h2 className="fw-bold text-dark mb-4">Dashboard Overview</h2>
 
-            {/* Metric Cards */}
             <div className="row g-4 mb-4">
                 <div className="col-md-3">
                     <div className="card border-0 shadow-sm rounded-3 p-3 d-flex flex-row align-items-center justify-content-between">
@@ -149,7 +148,7 @@ function AdminDashboard() {
                 </div>
             </div>
 
-            {/* Compact Charts Row */}
+            
             <div className="row g-4 mb-4">
                 <div className="col-lg-8">
                     <div className="card border-0 shadow-sm rounded-3 p-3 h-100">
@@ -193,7 +192,6 @@ function AdminDashboard() {
                 </div>
             </div>
 
-            {/* Recent Appointments Table */}
             <div className="card border-0 shadow-sm rounded-3 p-4">
                 <h5 className="fw-semibold mb-3 text-secondary">Recent Appointments</h5>
                 <div className="table-responsive">

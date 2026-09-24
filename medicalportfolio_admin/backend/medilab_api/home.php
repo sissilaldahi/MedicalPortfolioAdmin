@@ -13,7 +13,7 @@ elseif ($method === 'POST') {
     $title = $input['title'] ?? '';
     $description = $input['description'] ?? '';
 
-    // Check if a row exists, update or insert
+
     $check = $conn->query("SELECT id FROM home_content LIMIT 1");
     if ($check->num_rows > 0) {
         $stmt = $conn->prepare("UPDATE home_content SET title = ?, description = ?");
